@@ -9,9 +9,9 @@ def calculate_speed_distance_time():
         ValueError: If exactly 2 of the 3 variables are not given or if all 3 variables are given.
     """
 
-    speed = input("Enter speed (in units per time period), or press Enter if not known: ")
-    distance = input("Enter distance (in units), or press Enter if not known: ")
-    time = input("Enter time period (in units), or press Enter if not known: ")
+    speed = input("Enter speed (in units (m/s)), or press Enter if not known: ")
+    distance = input("Enter distance (in unit (m)), or press Enter if not known: ")
+    time = input("Enter time period (in unit (s)), or press Enter if not known: ")
 
     try:
         if speed and distance:
@@ -29,7 +29,7 @@ def calculate_speed_distance_time():
         else:
             raise ValueError("Exactly 2 of the 3 variables (speed, distance, or time) must be given.")
     except ValueError:
-        print("Invalid input. Please enter numeric values only.")
+        print("Invalid input. Please enter numeric/real world values only.")
 
 
 # Call the function

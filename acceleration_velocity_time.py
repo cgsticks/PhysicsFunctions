@@ -9,10 +9,10 @@ def calculate_acceleration_initial_final_velocity_time():
         ValueError: If exactly 3 of the 4 inputs are not given or if all 4 inputs are given.
     """
     # Get user input
-    a = input("Enter acceleration (in units per time period), or press Enter if not known: ")
-    u = input("Enter initial velocity (in units per time period), or press Enter if not known: ")
-    v = input("Enter final velocity (in units per time period), or press Enter if not known: ")
-    t = input("Enter time period (in units), or press Enter if not known: ")
+    a = input("Enter acceleration (in units (m/s^2)), or press Enter if not known: ")
+    u = input("Enter initial velocity (in units (m/s)), or press Enter if not known: ")
+    v = input("Enter final velocity (in units (m/s)), or press Enter if not known: ")
+    t = input("Enter time period (in unit (s)), or press Enter if not known: ")
 
     try:
         # check if 3 inputs are given
