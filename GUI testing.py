@@ -1,4 +1,4 @@
-from tkinter import *
+import tkinter as tk
 from horizontal_speed_distance_time import calculate_speed_distance_time
 from acceleration_finalvelocity_displacement_time import calculate_acceleration_finalvelocity_displacement_time
 from acceleration_velocity_time import calculate_acceleration_initial_final_velocity_time
@@ -11,62 +11,43 @@ class PhysicsFormulaCalculator:
         self.master = master
         master.title("Physics Formula Calculator")
 
-        self.label = Label(master, text="Choose a formula:")
-        self.label.pack()
+        # Display the image of formulas
+        image = tk.PhotoImage(file="Formulas_Kinematics_Legend.PNG")
+        canvas = tk.Canvas(master, width=image.width(), height=image.height())
+        canvas.pack()
+        canvas.create_image(0, 0, anchor=tk.NW, image=image)
+        # TODO: create six rectangles to make clickable boxes for each formula
+        # The rectangles should be located at the positions where each formula is displayed on the image
+        # Each rectangle should call a function to set the formula to be used for the calculation
 
-        self.formula_menu = OptionMenu(master, StringVar(), "Speed, Distance, Time",
-                                       "Acceleration, Final Velocity, Displacement, Time",
-                                       "Acceleration, Initial and Final Velocity, Time",
-                                       "Initial and Final Velocity, Displacement, Time",
-                                       "Acceleration, Initial Velocity, Displacement, Time",
-                                       "Acceleration, Initial Velocity, Displacement, Final Velocity")
+        # TODO: remove the formula menu
+        # Change formula menu choices to 1-6
+        self.formula_menu = tk.OptionMenu(master, tk.StringVar(), "1. Speed, Distance, Time", "2. Acceleration, Final Velocity, Displacement, Time", "3. Acceleration, Initial and Final Velocity, Time", "4. Initial and Final Velocity, Displacement, Time", "5. Acceleration, Initial Velocity, Displacement, Time", "6. Acceleration, Initial Velocity, Displacement, Final Velocity")
         self.formula_menu.pack()
 
-        self.speed_label = Label(master, text="Speed:")
-        self.speed_label.pack()
-        self.speed_entry = Entry(master)
-        self.speed_entry.pack()
-
-        self.distance_label = Label(master, text="Distance:")
-        self.distance_label.pack()
-        self.distance_entry = Entry(master)
-        self.distance_entry.pack()
-
-        self.time_label = Label(master, text="Time:")
-        self.time_label.pack()
-        self.time_entry = Entry(master)
-        self.time_entry.pack()
-
-        self.calculate_button = Button(master, text="Calculate", command=self.calculate_formula)
+        self.calculate_button = tk.Button(master, text="Calculate", command=self.calculate_formula)
         self.calculate_button.pack()
 
-        self.result_label = Label(master, text="")
+        self.result_label = tk.Label(master, text="")
         self.result_label.pack()
 
     def calculate_formula(self):
         formula = self.formula_menu.cget("text")
-        speed = self.speed_entry.get()
-        distance = self.distance_entry.get()
-        time = self.time_entry.get()
+        result = ""
+        if formula == "1. Speed, Distance, Time":
+            result = calculate_speed_distance_time()
+        elif formula == "2. Acceleration, Final Velocity, Displacement, Time":
+            result = calculate_acceleration_finalvelocity_displacement_time()
+        elif formula == "3. Acceleration, Initial and Final Velocity, Time":
+            result = calculate_acceleration_initial_final_velocity_time()
+        elif formula == "4. Initial and Final Velocity, Displacement, Time":
+            result = calculate_initial_final_velocity_displacement_time()
+        elif formula == "5. Acceleration, Initial Velocity, Displacement, Time":
+            result = calculate_acceleration_initial_velocity_displacement_time()
+        elif formula == "6. Acceleration, Initial Velocity, Displacement, Final Velocity":
+            result = calculate_acceleration_initial_velocity_displacement_final_velocity()
+        self.result_label.config(text=result)
 
-        try:
-            if speed and distance:
-                # Calculate time
-                time = float(distance) / float(speed)
-                self.result_label.config(text=f"Time taken: {time} units")
-            elif speed and time:
-                # Calculate distance
-                distance = float(speed) * float(time)
-                self.result_label.config(text=f"Distance covered: {distance} units")
-            elif distance and time:
-                # Calculate speed
-                speed = float(distance) / float(time)
-                self.result_label.config(text=f"Speed: {speed} units per time period")
-            else:
-                raise ValueError("Exactly 2 of the 3 variables (speed, distance, or time) must be given.")
-        except ValueError:
-            self.result_label.config(text="Invalid input. Please enter numeric/real world values only.")
-
-root = Tk()
+root = tk.Tk()
 app = PhysicsFormulaCalculator(root)
 root.mainloop()
