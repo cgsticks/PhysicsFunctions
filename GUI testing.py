@@ -22,7 +22,12 @@ class PhysicsFormulaCalculator:
 
         # TODO: remove the formula menu
         # Change formula menu choices to 1-6
-        self.formula_menu = tk.OptionMenu(master, tk.StringVar(), "1. Speed, Distance, Time", "2. Acceleration, Final Velocity, Displacement, Time", "3. Acceleration, Initial and Final Velocity, Time", "4. Initial and Final Velocity, Displacement, Time", "5. Acceleration, Initial Velocity, Displacement, Time", "6. Acceleration, Initial Velocity, Displacement, Final Velocity")
+        self.formula_menu = tk.OptionMenu(master, tk.StringVar(), "1. Speed, Distance, Time",
+                                          "2. Acceleration, Final Velocity, Displacement, Time",
+                                          "3. Acceleration, Initial and Final Velocity, Time",
+                                          "4. Initial and Final Velocity, Displacement, Time",
+                                          "5. Acceleration, Initial Velocity, Displacement, Time",
+                                          "6. Acceleration, Initial Velocity, Displacement, Final Velocity")
         self.formula_menu.pack()
 
         self.calculate_button = tk.Button(master, text="Calculate", command=self.calculate_formula)
@@ -35,17 +40,17 @@ class PhysicsFormulaCalculator:
         formula = self.formula_menu.cget("text")
         result = ""
         if formula == "1. Speed, Distance, Time":
-            result = calculate_speed_distance_time()
+            result = calculate_speed_distance_time(self.master)
         elif formula == "2. Acceleration, Final Velocity, Displacement, Time":
-            result = calculate_acceleration_finalvelocity_displacement_time()
+            result = calculate_acceleration_finalvelocity_displacement_time(self.master)
         elif formula == "3. Acceleration, Initial and Final Velocity, Time":
-            result = calculate_acceleration_initial_final_velocity_time()
+            result = calculate_acceleration_initial_final_velocity_time(self.master)
         elif formula == "4. Initial and Final Velocity, Displacement, Time":
-            result = calculate_initial_final_velocity_displacement_time()
+            result = calculate_initial_final_velocity_displacement_time(self.master)
         elif formula == "5. Acceleration, Initial Velocity, Displacement, Time":
-            result = calculate_acceleration_initial_velocity_displacement_time()
+            result = calculate_acceleration_initial_velocity_displacement_time(self.master)
         elif formula == "6. Acceleration, Initial Velocity, Displacement, Final Velocity":
-            result = calculate_acceleration_initial_velocity_displacement_final_velocity()
+            result = calculate_acceleration_initial_velocity_displacement_final_velocity(self.master)
         self.result_label.config(text=result)
 
 root = tk.Tk()
